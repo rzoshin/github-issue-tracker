@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- Title and Favicon -->
+    <title>English Janala | Best Platform for Learning English</title>
+    <link rel="shortcut icon" href="./assets/logo.png" type="image/x-icon" />
+
+    <!-- Font Awesome -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
+      integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+
+    <!-- Tailwind + Daisy UI -->
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <link
+      href="https://cdn.jsdelivr.net/npm/daisyui@5"
+      rel="stylesheet"
+      type="text/css"
+    />
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@300;400;500;600;700&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Stylesheet -->
+    <link rel="stylesheet" href="./styles/style.css" />
+    <style>
+      #main {
+        background-image: url("./assets/actual-cover.png");
+        background-size: cover;
+        background-position: center;
+        height: 100vh;
+      }
+    </style>
+  </head>
+  <body class="min-h-screen">
+    <main>
+      <div id="main" class="py-30 pl-30">
+        <div id="logo" class="text-5xl flex items-center gap-1 mb-9">
+          <span class="font-semibold">English</span>
+          <img class="w-15 h-15" src="./assets/logo.png" alt="Logo" />
+          <span class="font-bangla font-medium">জানালা</span>
+        </div>
+        <div id="login" class="mb-8">
+          <h1 class="font-semibold text-3xl mb-2">Welcome Back!</h1>
+          <p class="text-xl">লগইন করুন এবং নতুন শব্দ শেখা চালিয়ে যান।</p>
+        </div>
+        <div id="form">
+          <fieldset
+            class="fieldset border-base-300 rounded-box w-xs border border-[#9fd0f8] p-4"
+          >
+            <legend class="fieldset-legend"></legend>
+
+            <label class="label font-medium text-base text-neutral"
+              >Mobile Number
+            </label>
+            <input
+              id="input-number"
+              maxlength="11"
+              type="text"
+              class="input rounded-2xl bg-[#F4F5F7] mb-4"
+              placeholder="Enter 01713078749"
+            />
+
+            <label class="label font-medium text-base text-neutral"
+              >4 Digit Pin</label
+            >
+            <input
+              id="input-pin"
+              maxlength="4"
+              type="password"
+              class="input rounded-2xl bg-[#F4F5F7]"
+              placeholder="Enter 4351"
+            />
+
+            <button
+              id="login-btn"
+              class="btn btn-primary mt-4 rounded-full text-base text-white w-[50%]"
+            >
+              Login
+            </button>
+          </fieldset>
+        </div>
+      </div>
+      <!-- <img class="w-cover" src="./assets/cover-2.png" alt="" srcset=""> -->
+    </main>
+    <script src="./scripts/login.js"></script>
+  </body>
+</html>
