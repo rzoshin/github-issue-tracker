@@ -17,3 +17,10 @@ body {
 .issue-card {
     box-shadow: 0px 3px 6px 0px rgba(0,0,0,0.08);
 }
+
+.open {
+    border-top: 3px solid #00A96E;
+}
+.closed {
+    border-top: 3px solid #A855F7;
+}

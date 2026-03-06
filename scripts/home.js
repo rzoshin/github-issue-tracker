@@ -1,3 +1,5 @@
+// JavaScript code for the home page of the GitHub Issue Tracker application
+
 // API call to load all issues
 const url ="https://phi-lab-server.vercel.app/api/v1/lab/issues"
 
@@ -5,59 +7,116 @@ const loadIssues = () => {
 fetch(url)
 .then(re => re.json())
 .then(data => displayIssues(data.data))
+};
+loadIssues();
+
+// Function to create HTML elements for issue labels
+const createElements = (array) => {
+    const htmlElements = array.map(el => 
+        `
+        <div class="badge badge-soft ${el == 'bug' ? 'badge-error' : el == 'help wanted' ? 'badge-warning' : 'badge-success'} text-xs"> 
+            <i class="fa-solid ${el == 'bug' ? 'fa-bug' : el == 'help wanted' ? 'fa-life-ring' : 'fa-wand-magic-sparkles'}"></i>
+            ${el.toUpperCase()}
+        </div>
+        `
+    );
+    return htmlElements.join(" ");
 }
-
-loadIssues()
-// Icon:green/purple             High+Medium/Low
-// Fix Navigation Menu On Mobile Devices
-// The navigation menu doesn't collapse properly on mobile devices...
-// • BUG   ® HELP WANTED
-// #1 by john_doe
-// 1/15/2024
-
-// assignee: "jane_smith"
-// author: "john_doe"
-// createdAt: "2024-01-15T10:30:00Z"
-// description: "The navigation menu doesn't collapse properly on mobile devices. Need to fix the responsive behavior."
-// id: 1
-// labels: (2) ['bug', 'help wanted']
-// priority: "high"
-// status: "open"
-// title: "Fix navigation menu on mobile devices"
-// updatedAt: "2024-01-15T10:30:00Z"
 
 // Function to display issues as card in UI
 const displayIssues = (issues) => {
+    // Get the parent container where the issue cards will be appended
+    const parent = document.getElementById("card-container");
+    parent.innerHTML = "";
+
     for(let issue of issues){
-        console.log(issue)
-        const parent = document.getElementById("card-container");
-        
+        // Create a new div element for the issue card
         const issueCard = document.createElement("div");
-        issueCard.classList.add("issue-card", "rounded-[4px]", "bg-white");
+
+        // Add necessary classes to the issue card for styling
+        issueCard.classList.add("issue-card", "rounded-[4px]", "bg-white", "flex", "flex-col");
+        if(issue.status == "open"){
+            issueCard.classList.add("open")
+        } else {
+            issueCard.classList.add("closed")
+        }
+
+        // Set the inner HTML of the issue card to include issue details
         issueCard.innerHTML = `
-        <div class="flex flex-col gap-3 p-4">
+        <div class="flex flex-col gap-3 p-4 flex-[75%]">
             <div class="flex items-center justify-between">
                 <img src="../assets/${issue.status}.png" alt="${issue.status}">
-                <div class="badge badge-soft ${issue.priority == 'high' ? 'badge-error' : issue.priority == 'medium' ? 'badge-warning' : 'badge-neutral'}">
+                <div class="badge badge-soft rounded-[100px] text-sm ${issue.priority == 'high' ? 'badge-error text-[#EF4444] bg-[#FEECEC]' : issue.priority == 'medium' ? 'badge-warning text-[#F59E0B] bg-[#FFF6D1' : 'badge-neutral text-[#9CA3AF]'}">
                 ${issue.priority.toUpperCase()} </div>
             </div>
             <div>
                 <h3 class="text-sm font-semibold">${issue.title} </h3>
                 <p class="text-xs font-regular text-[#64748B]">${issue.description} </p>
             </div>
-            <div>
-
+            <div class="flex flex-wrap gap-1">
+                ${createElements(issue.labels)}
             </div>
         </div>
-        <div class="p-4 text-[#64748B] text-xs">
-            <p>#${issue.id} by ${issue.author}</p>
-            <p>${issue.createdAt}</p>
-
+        <div class="p-4 text-[#64748B] text-xs border-t border-[#E4E4E7] flex place-items-end w-full h-fit">
+            <div class="w-[100%] h-[100%]">
+                <p class="">#${issue.id} by ${issue.author}</p>
+                <p class="">${issue.createdAt}</p>
+            </div>
         </div>
-
-
         `
-
+        // Append the issue card to the parent container
         parent.append(issueCard);
     }
 }
+
+const disableActive = (btn) => {
+    btn.classList.remove("btn-primary");
+}
+const enableActive = (btn) => {
+    btn.classList.add("btn-primary")
+}
+// Toggle between All, Open and Closed issues
+const showTab = (id) => {
+    const allBtns = document.querySelectorAll(".tab-btn");
+    for(btn of allBtns) {
+        disableActive(btn);
+    }
+    const active = document.getElementById(id);
+    enableActive(active);
+}
+
+// Filtering Open Issues
+const openTab = document.getElementById("openTab");
+openTab.addEventListener("click", function(){
+    const loadOpenIssues = () => {
+        fetch("https://phi-lab-server.vercel.app/api/v1/lab/issues")
+        .then(re => re.json())
+        .then((data) => {
+            const allIssues = data.data;
+            const openIssues = allIssues.filter(iss => iss.status === "open");
+
+            displayIssues(openIssues);
+        })};
+        loadOpenIssues();
+        
+});
+
+const allTab = document.getElementById("allTab");
+allTab.addEventListener("click", function(){
+    loadIssues();
+});
+
+const closedTab = document.getElementById("closedTab");
+closedTab.addEventListener("click", function(){
+    const loadClosedIssues = () => {
+        fetch("https://phi-lab-server.vercel.app/api/v1/lab/issues")
+        .then(re => re.json())
+        .then((data) => {
+            const allIssues = data.data;
+            const closedIssues = allIssues.filter(iss => iss.status === "closed");
+
+            displayIssues(closedIssues);
+        })};
+        loadClosedIssues();
+});
+
