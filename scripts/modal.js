@@ -19,7 +19,7 @@ displayModal = (data) => {
         <div class="modal-box p-6">
             <h3 class="text-2xl font-bold mb-2">${data.title}</h3>
             <div class="flex items-center gap-2">
-                <div class = "font-medium text-sm p-2 text-white rounded-[100px] bg-[${data.status == "open"? '#00A96E' : '#A855F7'}]" > ${data.status == "open" ? data.status + 'ed' : data.status} </div>
+                <div class = "font-medium text-sm py-[6px] px-[15.5px] capitalize text-white rounded-[100px] bg-[${data.status == "open"? '#00A96E' : '#A855F7'}]" > ${data.status == "open" ? data.status + 'ed' : data.status} </div>
                 <div class = "w-1 h-1 rounded-full bg-[#64748B] my-auto"></div>
                 <span class = "text-sm text-[#64748B]">${data.status == "open" ? data.status + 'ed' : data.status} by ${data.assignee}</span>
                 <div class = "w-1 h-1 rounded-full bg-[#64748B] my-auto"></div>

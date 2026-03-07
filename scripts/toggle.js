@@ -16,7 +16,9 @@ const showTab = (id) => {
 
 // Filtering Open Issues
 const openTab = document.getElementById("openTab");
+
 openTab.addEventListener("click", function(){
+    startLoading();
     const loadOpenIssues = () => {
         fetch("https://phi-lab-server.vercel.app/api/v1/lab/issues")
         .then(re => re.json())
@@ -32,12 +34,14 @@ openTab.addEventListener("click", function(){
 
 const allTab = document.getElementById("allTab");
 allTab.addEventListener("click", function(){
+    startLoading();
     loadIssues();
     calculateCount();
 });
 
 const closedTab = document.getElementById("closedTab");
 closedTab.addEventListener("click", function(){
+    startLoading();
     const loadClosedIssues = () => {
         fetch("https://phi-lab-server.vercel.app/api/v1/lab/issues")
         .then(re => re.json())

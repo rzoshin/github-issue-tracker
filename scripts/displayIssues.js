@@ -4,10 +4,12 @@
 const url ="https://phi-lab-server.vercel.app/api/v1/lab/issues"
 
 const loadIssues = () => {
+startLoading();
 fetch(url)
 .then(re => re.json())
 .then(data => displayIssues(data.data))
 };
+
 loadIssues();
 
 // Function to create HTML elements for issue labels
@@ -34,7 +36,7 @@ const displayIssues = (issues) => {
         const issueCard = document.createElement("div");
 
         // Add necessary classes to the issue card for styling
-        issueCard.classList.add("issue-card", "rounded-[4px]", "bg-white", "flex", "flex-col");
+        issueCard.classList.add("issue-card", "rounded-lg", "bg-white", "flex", "flex-col");
         if(issue.status == "open"){
             issueCard.classList.add("open")
         } else {
@@ -44,29 +46,30 @@ const displayIssues = (issues) => {
 
         // Set the inner HTML of the issue card to include issue details
         issueCard.innerHTML = `
-        <div class="immediate-child flex flex-col gap-3 p-4 flex-[75%]">
+        <div class="immediate-child flex flex-col gap-3 p-4 flex-[80%]">
             <div class="header flex items-center justify-between">
                 <img src="../assets/${issue.status}.png" alt="${issue.status}">
                 <div class="badge badge-soft rounded-[100px] text-sm ${issue.priority == 'high' ? 'badge-error text-[#EF4444] bg-[#FEECEC]' : issue.priority == 'medium' ? 'badge-warning text-[#F59E0B] bg-[#FFF6D1' : 'badge-neutral text-[#9CA3AF]'}">
                 ${issue.priority.toUpperCase()} </div>
             </div>
             <div class="text">
-                <h3 class="text-sm font-semibold">${issue.title} </h3>
-                <p class="text-xs font-regular text-[#64748B]">${issue.description} </p>
+                <h3 class="text-md font-semibold">${issue.title} </h3>
+                <p class="text-sm font-regular text-[#64748B]">${issue.description} </p>
             </div>
             <div class="labels flex flex-wrap gap-1">
                 ${createElements(issue.labels)}
             </div>
         </div>
-        <div class="immediate-child p-4 text-[#64748B] text-xs border-t border-[#E4E4E7] flex place-items-end w-full h-fit">
-            <div class="footer w-[100%] h-[100%]">
-                <p id="id" class="">#${issue.id} by ${issue.author}</p>
-                <p id="date" class="">${new Date(issue.createdAt).toLocaleDateString("en-US")}</p>
+        <div class="immediate-child p-4 text-[#64748B] text-xs border-t border-[#E4E4E7]">
+            <div class="footer w-[100%] h-[100%] flex flex-col gap-2">
+                <p id="id" class="mb-2">#${issue.id} by ${issue.author}</p>
+                <p id="date">${new Date(issue.createdAt).toLocaleDateString("en-US")}</p>
             </div>
         </div>
         `
         // Append the issue card to the parent container
         parent.append(issueCard);
     }
+    stopLoading();
     calculateCount();
 }
