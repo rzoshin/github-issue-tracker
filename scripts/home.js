@@ -67,6 +67,7 @@ const displayIssues = (issues) => {
         // Append the issue card to the parent container
         parent.append(issueCard);
     }
+    calculateCount();
 }
 
 const disableActive = (btn) => {
@@ -104,6 +105,7 @@ openTab.addEventListener("click", function(){
 const allTab = document.getElementById("allTab");
 allTab.addEventListener("click", function(){
     loadIssues();
+    calculateCount();
 });
 
 const closedTab = document.getElementById("closedTab");
@@ -119,4 +121,14 @@ closedTab.addEventListener("click", function(){
         })};
         loadClosedIssues();
 });
+
+// Tracking count of total issues
+function calculateCount() {
+    const count = document.getElementById("total-count");
+    const parent = document.getElementById("card-container");
+
+    count.innerText = parent.children.length;
+}
+
+calculateCount();
 
