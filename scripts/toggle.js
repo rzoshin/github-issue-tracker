@@ -14,6 +14,10 @@ const showTab = (id) => {
     enableActive(active);
 }
 
+window.addEventListener("DOMContentLoaded", function () {
+    showTab("allTab");
+});
+
 // Filtering Open Issues
 const openTab = document.getElementById("openTab");
 
