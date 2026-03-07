@@ -50,13 +50,40 @@
   <body>
     <!-- Navigation Bar -->
     <header class="bg-white mb-[60px]">
-      <div class="navbar bg-base-100 shadow-sm px-20">
+      <div class="navbar bg-base-100 shadow-sm px-4 md:px-10 lg:px-20">
+        <!-- LEFT SIDE -->
         <div class="flex-1">
-          <a class="btn btn-ghost text-xl"
-            ><i class="fa-brands fa-github"></i>GitHub Issues Tracker</a
-          >
+          <!-- MOBILE DROPDOWN -->
+          <div class="dropdown md:hidden">
+            <div tabindex="0" role="button" class="btn btn-ghost p-2">
+              <i class="fa-brands fa-github text-2xl"></i>
+            </div>
+
+            <ul
+              tabindex="0"
+              class="dropdown-content menu bg-base-100/70 rounded-box z-10 mt-3 w-52 p-2 shadow"
+            >
+              <li class="px-2 py-1 text-lg text-center font-semibold">GitHub Issues Tracker</li>
+
+              <li>
+                <a class="flex justify-center" href="./index.html">
+                  <i class="text-center fa-solid fa-arrow-right-from-bracket"></i>
+                  Log Out
+                </a>
+              </li>
+            </ul>
+          </div>
+
+          <!-- DESKTOP LOGO -->
+          <a class="btn btn-ghost text-xl hidden md:inline-flex">
+            <i class="fa-brands fa-github"></i>
+            GitHub Issues Tracker
+          </a>
         </div>
-        <div class="flex gap-2">
+
+        <!-- RIGHT SIDE -->
+        <div class="flex gap-2 items-center">
+          <!-- SEARCH -->
           <label class="input">
             <svg
               class="h-[1em] opacity-50"
@@ -74,17 +101,25 @@
                 <path d="m21 21-4.3-4.3"></path>
               </g>
             </svg>
+
             <input
               id="searchInput"
               type="search"
-              required
               placeholder="Search issues..."
             />
           </label>
+
           <button class="btn btn-primary" id="searchBtn">Search</button>
-          <a class="btn btn-primary" href="./index.html" id="logout"
-            ><i class="fa-solid fa-arrow-right-from-bracket"></i> Log Out</a
+
+          <!-- DESKTOP LOGOUT -->
+          <a
+            class="btn btn-primary hidden md:flex"
+            href="./index.html"
+            id="logout"
           >
+            <i class="fa-solid fa-arrow-right-from-bracket"></i>
+            Log Out
+          </a>
         </div>
       </div>
     </header>
