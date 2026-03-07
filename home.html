@@ -28,6 +28,12 @@
       rel="stylesheet"
       type="text/css"
     />
+    <!-- Adding all themes -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/daisyui@5/themes.css"
+      rel="stylesheet"
+      type="text/css"
+    />
 
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -68,10 +74,17 @@
                 <path d="m21 21-4.3-4.3"></path>
               </g>
             </svg>
-            <input id="searchInput" type="search" required placeholder="Search issues..." />
+            <input
+              id="searchInput"
+              type="search"
+              required
+              placeholder="Search issues..."
+            />
           </label>
           <button class="btn btn-primary" id="searchBtn">Search</button>
-          <a class="btn btn-primary" href="./login.html" id="logout">Log Out</a>
+          <a class="btn btn-primary" href="./index.html" id="logout"
+            ><i class="fa-solid fa-arrow-right-from-bracket"></i> Log Out</a
+          >
         </div>
       </div>
     </header>
@@ -131,11 +144,13 @@
           </div>
         </div>
         <!-- The container of all 50 issues -->
-         <div id="spinner" class="hidden">
-            <section class="flex justify-center items-center min-h-screen">
-              <span class="loading loading-spinner loading-xl text-primary"></span>
-            </section>
-         </div>
+        <div id="spinner" class="hidden">
+          <section class="flex justify-center items-center min-h-screen">
+            <span
+              class="loading loading-spinner loading-xl text-primary"
+            ></span>
+          </section>
+        </div>
         <div
           id="card-container"
           class="bg-[#FBFBFB] p-6 mb-[60px] grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-3"
@@ -149,14 +164,13 @@
         <dialog id="my_modal_5" class="modal modal-bottom sm:modal-middle">
           <!-- Dynamic modal as per card's API call -->
         </dialog>
-
       </section>
     </main>
     <!-- Linking JS files -->
     <script src="./scripts/helper.js"></script>
     <script src="./scripts/modal.js"></script>
-    <script src="./scripts/search.js"></script>
     <script src="./scripts/toggle.js"></script>
+    <script src="./scripts/search.js"></script>
     <script src="./scripts/displayIssues.js"></script>
   </body>
 </html>

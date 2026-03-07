@@ -5,7 +5,7 @@ loginBtn.addEventListener("click", function(){
     const password = document.getElementById("passWord").value;
 
     if(username === "admin" && password === "admin123"){
-    window.location.href = "home.html";
+    window.location.href = "./home.html";
     }
     else {
         alert("Invalid username or password. Please try again.");
