@@ -40,27 +40,28 @@ const displayIssues = (issues) => {
         } else {
             issueCard.classList.add("closed")
         }
+        issueCard.setAttribute("id", issue.id);
 
         // Set the inner HTML of the issue card to include issue details
         issueCard.innerHTML = `
-        <div class="flex flex-col gap-3 p-4 flex-[75%]">
-            <div class="flex items-center justify-between">
+        <div class="immediate-child flex flex-col gap-3 p-4 flex-[75%]">
+            <div class="header flex items-center justify-between">
                 <img src="../assets/${issue.status}.png" alt="${issue.status}">
                 <div class="badge badge-soft rounded-[100px] text-sm ${issue.priority == 'high' ? 'badge-error text-[#EF4444] bg-[#FEECEC]' : issue.priority == 'medium' ? 'badge-warning text-[#F59E0B] bg-[#FFF6D1' : 'badge-neutral text-[#9CA3AF]'}">
                 ${issue.priority.toUpperCase()} </div>
             </div>
-            <div>
+            <div class="text">
                 <h3 class="text-sm font-semibold">${issue.title} </h3>
                 <p class="text-xs font-regular text-[#64748B]">${issue.description} </p>
             </div>
-            <div class="flex flex-wrap gap-1">
+            <div class="labels flex flex-wrap gap-1">
                 ${createElements(issue.labels)}
             </div>
         </div>
-        <div class="p-4 text-[#64748B] text-xs border-t border-[#E4E4E7] flex place-items-end w-full h-fit">
-            <div class="w-[100%] h-[100%]">
-                <p class="">#${issue.id} by ${issue.author}</p>
-                <p class="">${issue.createdAt}</p>
+        <div class="immediate-child p-4 text-[#64748B] text-xs border-t border-[#E4E4E7] flex place-items-end w-full h-fit">
+            <div class="footer w-[100%] h-[100%]">
+                <p id="id" class="">#${issue.id} by ${issue.author}</p>
+                <p id="date" class="">${new Date(issue.createdAt).toLocaleDateString("en-US")}</p>
             </div>
         </div>
         `
@@ -69,66 +70,3 @@ const displayIssues = (issues) => {
     }
     calculateCount();
 }
-
-const disableActive = (btn) => {
-    btn.classList.remove("btn-primary");
-}
-const enableActive = (btn) => {
-    btn.classList.add("btn-primary")
-}
-// Toggle between All, Open and Closed issues
-const showTab = (id) => {
-    const allBtns = document.querySelectorAll(".tab-btn");
-    for(btn of allBtns) {
-        disableActive(btn);
-    }
-    const active = document.getElementById(id);
-    enableActive(active);
-}
-
-// Filtering Open Issues
-const openTab = document.getElementById("openTab");
-openTab.addEventListener("click", function(){
-    const loadOpenIssues = () => {
-        fetch("https://phi-lab-server.vercel.app/api/v1/lab/issues")
-        .then(re => re.json())
-        .then((data) => {
-            const allIssues = data.data;
-            const openIssues = allIssues.filter(iss => iss.status === "open");
-
-            displayIssues(openIssues);
-        })};
-        loadOpenIssues();
-        
-});
-
-const allTab = document.getElementById("allTab");
-allTab.addEventListener("click", function(){
-    loadIssues();
-    calculateCount();
-});
-
-const closedTab = document.getElementById("closedTab");
-closedTab.addEventListener("click", function(){
-    const loadClosedIssues = () => {
-        fetch("https://phi-lab-server.vercel.app/api/v1/lab/issues")
-        .then(re => re.json())
-        .then((data) => {
-            const allIssues = data.data;
-            const closedIssues = allIssues.filter(iss => iss.status === "closed");
-
-            displayIssues(closedIssues);
-        })};
-        loadClosedIssues();
-});
-
-// Tracking count of total issues
-function calculateCount() {
-    const count = document.getElementById("total-count");
-    const parent = document.getElementById("card-container");
-
-    count.innerText = parent.children.length;
-}
-
-calculateCount();
-

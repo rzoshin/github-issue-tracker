@@ -74,15 +74,32 @@
     </header>
     <main class="bg-[##F8FAFC] min-h-screen max-w-[75%] mx-auto">
       <section id="tabs" class="p-6 flex gap-2 bg-white mb-4 rounded-lg">
-        <button onclick="showTab('allTab')" id="allTab" class="btn tab-btn w-[120px] h-10">All</button>
-        <button onclick="showTab('openTab')" id="openTab" class="btn tab-btn w-[120px] h-10">Open</button>
-        <button onclick="showTab('closedTab')" id="closedTab" class="btn tab-btn w-[120px] h-10">Closed</button>
+        <button
+          onclick="showTab('allTab')"
+          id="allTab"
+          class="btn tab-btn w-[120px] h-10"
+        >
+          All
+        </button>
+        <button
+          onclick="showTab('openTab')"
+          id="openTab"
+          class="btn tab-btn w-[120px] h-10"
+        >
+          Open
+        </button>
+        <button
+          onclick="showTab('closedTab')"
+          id="closedTab"
+          class="btn tab-btn w-[120px] h-10"
+        >
+          Closed
+        </button>
       </section>
-      <section
-        id="issue-info"
-        class="rounded-lg"
-      >
-        <div class="p-6 flex justify-between items-center bg-white border-b border-[#E4E4E7]">
+      <section id="issue-info" class="rounded-lg">
+        <div
+          class="p-6 flex justify-between items-center bg-white border-b border-[#E4E4E7]"
+        >
           <div class="flex gap-2 items-center">
             <div
               class="w-[50px] h-[50px] rounded-full bg-[#ECE4FF] flex items-center justify-center"
@@ -90,7 +107,9 @@
               <img class="w-8 h-8" src="../assets/Aperture.png" alt="" />
             </div>
             <div>
-              <h3 class="mb-[3px] font-semibold text-xl"><span id="total-count">50</span> Issues</h3>
+              <h3 class="mb-[3px] font-semibold text-xl">
+                <span id="total-count">50</span> Issues
+              </h3>
               <p>Track and manage your project issues</p>
             </div>
           </div>
@@ -105,11 +124,23 @@
             </div>
           </div>
         </div>
-        <div id="card-container" class="bg-[#FBFBFB] p-6 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-3">
-            
+        <div
+          id="card-container"
+          class="bg-[#FBFBFB] p-6 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-3"
+        >
+          <!-- Here cards will be shown dynamically fetching data from API -->
         </div>
       </section>
+      <section>
+        <!-- Modal to display details of issue -->
+        <!-- Open the modal using ID.showModal() method -->
+        <dialog id="my_modal_5" class="modal modal-bottom sm:modal-middle">
+        </dialog>
+      </section>
     </main>
-    <script src="../scripts/home.js"></script>
+    <script src="../scripts/toggle.js"></script>
+    <script src="../scripts/displayIssues.js"></script>
+    <script src="../scripts/count.js"></script>
+    <script src="../scripts/zzz.js"></script>
   </body>
 </html>
