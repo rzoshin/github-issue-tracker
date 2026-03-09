@@ -19,7 +19,7 @@ displayModal = (data) => {
             <div class="flex items-center gap-2">
                 <div class = "font-medium text-sm py-[6px] px-[15.5px] capitalize text-white rounded-[100px] bg-[${data.status == "open"? '#00A96E' : '#A855F7'}]" > ${data.status == "open" ? data.status + 'ed' : data.status} </div>
                 <div class = "w-1 h-1 rounded-full bg-[#64748B] my-auto"></div>
-                <span class = "text-sm text-[#64748B]">${data.status == "open" ? data.status + 'ed' : data.status} by ${data.assignee}</span>
+                <span class = "text-sm text-[#64748B]">${data.status == "open" ? data.status + 'ed' : data.status} by ${data.assignee ? data.assignee : 'anonymous'}</span>
                 <div class = "w-1 h-1 rounded-full bg-[#64748B] my-auto"></div>
                 <span class = "text-sm text-[#64748B]">${new Date(data.updatedAt).toLocaleDateString("en-US")}
             </div>
@@ -32,7 +32,7 @@ displayModal = (data) => {
             <div class="grid grid-cols-2 gap-2.5 bg-[#F8FAFC] p-4 rounded-lg">
                 <div>
                     <p class="text-[#64748B] mb-1"> Assignee: </p>
-                    <h4 class="font-semibold text-base"> ${data.assignee} </h4>
+                    <h4 class="font-semibold text-base"> ${data.assignee ? data.assignee : 'No assignee found'} </h4>
                 </div>
                 <div>
                     <p class="text-[#64748B] mb-1">Priority: </p>
